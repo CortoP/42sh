@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 19:02:22 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/24 18:17:43 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/01/25 11:09:12 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void			ft_test_cmd_exec(t_cmd *cmd, t_sh *p)
 //		if (cmd->split_type == PIPE)
 //			ft_test_pipe_cmd(cmd->split_cmd, p);
 //		else
-		ft_putendl(cmd->cmd_line);
 		ft_test_exec_redir(cmd, p);
 		cmd = cmd->next;
 	}

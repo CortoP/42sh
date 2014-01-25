@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 15:45:24 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/23 16:17:52 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/01/25 11:05:50 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void				ft_shell(t_sh *p)
 {
-	p = p;
 	while (42)
 	{
 		ft_putstr(PROMPT);

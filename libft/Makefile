@@ -6,7 +6,7 @@
 #    By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 17:01:45 by vlehuger          #+#    #+#              #
-#    Updated: 2014/01/19 15:46:21 by vlehuger         ###   ########.fr        #
+#    Updated: 2014/01/25 11:43:35 by vlehuger         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -38,6 +38,7 @@ SRCS = \
 		ft_putnbr_fd.c \
 		ft_putstr.c \
 		ft_putstr_fd.c \
+		ft_strcmp.c \
 		ft_strdel.c \
 		ft_strdup.c \
 		ft_strjoin.c \

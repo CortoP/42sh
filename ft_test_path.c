@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 09:59:08 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/24 18:28:50 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/01/25 11:41:41 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char					ft_test_path(char **env_path, t_sh *p, char **av)
 	int					i;
 	char				*path;
 
-	if (av[0][0] = '/' && ft_test_direct_access() == 0)
+	if (av[0][0] == '/' && ft_test_direct_access(p, av) == 0)
 		return (0);
 	else
 	{
@@ -25,7 +25,7 @@ char					ft_test_path(char **env_path, t_sh *p, char **av)
 		while (env_path[i])
 		{
 			path = ft_strjoin(env_path[i], "/");
-			path = ft_strjoin(path, p->cmd->cmd_line);
+			path = ft_strjoin(path, av[0]);
 			if (access(path, X_OK) == 0)
 			{
 				ft_execute(path, av, p->env);
@@ -36,8 +36,8 @@ char					ft_test_path(char **env_path, t_sh *p, char **av)
 			i++;
 		}
 	}
-//	if (ft_test_ft_funtions() == 0)
-//		return (0);
+	if (ft_test_ft_functions(p, av) == 0)
+		return (0);
 	return (1);
 }
 
@@ -52,17 +52,12 @@ void				ft_execute(char *path, char **av, char **env)
 		execve(path, av, env);
 }
 
-int					ft_test_direct_access(t_cmd *cmd, t_sh *p)
+int					ft_test_direct_access(t_sh *p, char **av)
 {
-	if (access(cmd->cmd_line, p->env) == 0)
+	if (access(av[0], X_OK) == 0)
 	{
-		ft_execute(cmd->cmd_line);
+		ft_execute(av[0], av, p->env);
 		return (0);
 	}
 	return (1);
-}
-
-int					ft_test_ft_functions()
-{
-	return (0);
 }

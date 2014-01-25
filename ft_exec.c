@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 15:40:12 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/24 17:58:05 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/01/25 11:18:15 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 void				ft_reg_exec(t_cmd *cmd, t_sh *p)
 {
-	cmd = cmd;
-
 	ft_test_path(p->paths, p, ft_strsplit(cmd->cmd_line,' '));
 }

@@ -6,17 +6,18 @@
 #    By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 17:01:45 by vlehuger          #+#    #+#              #
-#    Updated: 2014/01/24 17:24:17 by vlehuger         ###   ########.fr        #
+#    Updated: 2014/01/25 11:41:16 by vlehuger         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = ft_minishell2
 
 SRCS = \
 		main.c \
 		array_management.c \
+		ft_builtin/ft_exit.c \
 		ft_cmd.c \
 		ft_exec.c \
 		ft_exec_cmd.c \
@@ -29,9 +30,10 @@ SRCS = \
 		ft_shell.c \
 		ft_split_trim.c \
 		ft_test_exec_redir.c \
+		ft_test_ft_functions.c \
 		ft_test_path.c \
 		ft_test_pipe.c \
-		ft_test_redir.c
+		ft_test_redir.c \
 
 OBJS = $(SRCS:.c=.o)
 

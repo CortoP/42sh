@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/19 10:32:43 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/24 17:39:42 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/01/25 11:39:40 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SH_2
@@ -42,6 +42,7 @@ char				**array_dup(char **array);
 void				ft_cmd(t_sh *p);
 void				ft_execute(char *path, char **av, char **env);
 void				ft_exec_cmd(t_sh *p);
+void				ft_exit(char *str);
 t_cmd				*ft_get_args(char *str);
 void				ft_get_cmd(t_sh *p);
 char				*ft_get_env(char **env, char *var);
@@ -53,7 +54,9 @@ void				ft_reg_exec(t_cmd *cmd, t_sh *p);
 void				ft_shell(t_sh *p);
 char				**ft_split_trim(char *arg, char c);
 void				ft_test_cmd_exec(t_cmd *cmd, t_sh *p);
+int					ft_test_direct_access(t_sh *p, char **av);
 void				ft_test_exec_redir(t_cmd *cmd, t_sh *p);
+int					ft_test_ft_functions(t_sh *p, char **av);
 char				ft_test_path(char **env_path, t_sh *p, char **av);
 t_cmd				*ft_test_pipe(t_cmd *cmd);
 t_cmd				*ft_test_redir(t_cmd *cmd);
