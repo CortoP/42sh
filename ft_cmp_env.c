@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test_ft_functions.c                             :+:      :+:    :+:   */
+/*   ft_cmp_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 11:31:45 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/25 15:18:39 by vlehuger         ###   ########.fr       */
+/*   Created: 2014/01/25 14:36:14 by vlehuger          #+#    #+#             */
+/*   Updated: 2014/01/25 14:38:52 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_sh2.h>
 
-int				ft_test_ft_functions(t_sh *p, char **av)
+char			ft_cmp_env(char *env, char *cmd)
 {
-	(void)p;
-	if (ft_strcmp(av[0], "exit") == 0)
-		ft_exit(av[1]);
-	else if (ft_strcmp(av[0], "setenv") == 0)
+	int			i;
+	int			ret;
+
+	ret = 0;
+	i = 0;
+	while (env[i] != '=' && env[i] != '\0')
 	{
-		ft_setenv(p, av);
-		return (0);
+		if (env[i] != cmd[i])
+			ret = 1;
+		i++;
 	}
-	else if (ft_strcmp(av[0], "unsetenv") == 0)
-	{
-		ft_unsetenv(p, av);
-		return (0);
-	}
-	return (-1);
+	return (ret);
 }
