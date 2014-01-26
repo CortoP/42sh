@@ -6,7 +6,7 @@
 #    By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 17:01:45 by vlehuger          #+#    #+#              #
-#    Updated: 2014/01/25 16:52:56 by vlehuger         ###   ########.fr        #
+#    Updated: 2014/01/26 17:57:37 by vlehuger         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,6 +22,7 @@ SRCS = \
 		ft_builtin/ft_unsetenv.c \
 		ft_cmd.c \
 		ft_cmp_env.c \
+		ft_error.c \
 		ft_exec.c \
 		ft_exec_cmd.c \
 		ft_get_args.c \
@@ -37,6 +38,7 @@ SRCS = \
 		ft_test_ft_functions.c \
 		ft_test_path.c \
 		ft_test_pipe.c \
+		ft_test_pipe_cmd.c \
 		ft_test_redir.c \
 		ft_valid_redir.c
 

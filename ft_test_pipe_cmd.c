@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_params.c                                    :+:      :+:    :+:   */
+/*   ft_test_pipe_cmd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/19 15:19:30 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/26 13:54:37 by vlehuger         ###   ########.fr       */
+/*   Created: 2014/01/26 13:07:57 by vlehuger          #+#    #+#             */
+/*   Updated: 2014/01/26 17:33:36 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_sh2.h>
 
-t_sh				*ft_get_params(char **envp)
+int				ft_test_pipe_cmd(t_cmd *cmd, t_sh *p)
 {
-	t_sh			*params;
-	char			*var;
+	char		***cmd1_cmd2;
 
-	params = (t_sh *)malloc(sizeof(t_sh));
-	if (params)
+	cmd1_cmd2 = (char ***)malloc(sizeof(char **) * 2);
+	if (cmd1_cmd2)
 	{
-		params->env = array_dup(envp);
-		var = ft_get_env(envp, "PATH");
-		params->paths = ft_get_env_path(var);
-		free(var);
-		params->cmd = NULL;
-		params->reg_fd[0] = dup(0);
-		params->reg_fd[1] = dup(1);
-		return (params);
+		cmd1_cmd2[0] = ft_split_trim(cmd->cmd_line, ' ');
+		cmd1_cmd2[1] = ft_split_trim(cmd->next->cmd_line, ' ');
+		ft_test_pipe_path(p->paths, p, cmd1_cmd2);
+		return (0);
 	}
-	return (NULL);
+	return (-1);
 }

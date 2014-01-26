@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 16:08:04 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/25 17:30:58 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/01/26 14:15:44 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,32 @@ char			***ft_separe_in(char **av)
 	while (av[i + j])
 		j++;
 	cmd_line[1] = ft_array_sub(av, i, j, "<");
+	return (cmd_line);
+}
+
+char			***ft_separe_out(char **av)
+{
+	char		***cmd_line;
+	int			i;
+	int			j;
+
+	cmd_line = (char ***)malloc(sizeof(char **) * 3);
+	cmd_line[2] = NULL;
+	i = 0;
+	while (av[i])
+	{
+		if (ft_strcmp(av[i], ">") == 0)
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	cmd_line[0] = ft_array_sub(av, 0, i, ">");
+	j = 0;
+	while (av[i + j])
+		j++;
+	cmd_line[1] = ft_array_sub(av, i, j, ">");
 	return (cmd_line);
 }
 

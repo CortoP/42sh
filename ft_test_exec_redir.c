@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 15:35:33 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/25 15:35:17 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/01/26 14:12:57 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void				ft_test_exec_redir(t_cmd *cmd, t_sh *p)
 		ft_in_exec(cmd, p);
 //	else if (cmd->in_redir != 0 && cmd->out_redir != 0)
 //		ft_in_and_out_exec(cmd, p);
-//	else if (cmd->in_redir == 0 && cmd->out_redir != 0)
-//		ft_out_exec(cmd, p);
+	else if (cmd->in_redir == 0 && cmd->out_redir != 0)
+		ft_out_exec(cmd, p);
 	else
 		ft_reg_exec(cmd, p);
 }
