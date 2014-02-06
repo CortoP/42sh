@@ -6,7 +6,7 @@
 #    By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 17:01:45 by vlehuger          #+#    #+#              #
-#    Updated: 2014/01/26 17:57:37 by vlehuger         ###   ########.fr        #
+#    Updated: 2014/02/06 11:50:26 by vlehuger         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,6 +17,8 @@ NAME = ft_minishell2
 SRCS = \
 		main.c \
 		array_management.c \
+		ft_builtin/cd/ft_cd.c \
+		ft_builtin/cd/ft_change_pwd.c \
 		ft_builtin/ft_exit.c \
 		ft_builtin/ft_setenv.c \
 		ft_builtin/ft_unsetenv.c \

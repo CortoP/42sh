@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 09:59:08 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/26 17:56:16 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/02/06 11:16:37 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void				ft_test_path(char **env_path, t_sh *p, char **av)
 	char			*path;
 
 	if (av[0][0] == '/' && ft_test_direct_access(p, av) == 0)
+		return ;
+	else if (ft_test_ft_functions(p, av) == 0)
 		return ;
 	else
 	{
@@ -39,8 +41,7 @@ void				ft_test_path(char **env_path, t_sh *p, char **av)
 			i++;
 		}
 	}
-	if (ft_test_ft_functions(p, av) != 0)
-		ft_error(CMD_NOT_FOUND, av[0]);
+	ft_error(CMD_NOT_FOUND, av[0]);
 }
 
 char				ft_test_pipe_path(char **env_path, t_sh *p, char ***av)

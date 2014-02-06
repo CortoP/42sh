@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 17:46:11 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/24 13:50:47 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/02/06 14:39:23 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_cmd				*ft_test_redir(t_cmd *cmd)
 	t_cmd			*first;
 
 	first = cmd;
-
 	while (cmd)
 	{
 		if (cmd->split_type != CMD)

@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/19 15:19:30 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/26 13:54:37 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/02/06 15:27:06 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_sh				*ft_get_params(char **envp)
 		params->cmd = NULL;
 		params->reg_fd[0] = dup(0);
 		params->reg_fd[1] = dup(1);
+		params->pwd = ft_get_env(envp, "PWD");
+		params->last_pwd = ft_get_env(envp, "PWD");
 		return (params);
 	}
 	return (NULL);

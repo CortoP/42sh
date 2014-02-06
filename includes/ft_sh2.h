@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/19 10:32:43 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/26 17:57:21 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/02/06 15:21:55 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SH_2
@@ -17,6 +17,9 @@
 # define PIPE 2
 # define CMD 3
 # define CMD_NOT_FOUND 1
+# define PER_DEN 2
+# define N_F_D 3
+# define NOT_DIR 4
 # include <libft.h>
 # include <stdio.h>
 
@@ -34,6 +37,8 @@ typedef struct		s_cmd
 typedef struct		s_sh
 {
 	char			**env;
+	char			*last_pwd;
+	char			*pwd;
 	char			**paths;
 	int				reg_fd[2];
 	t_cmd			*cmd;
@@ -44,9 +49,11 @@ char				**array_dup(char **array);
 char				**ft_array_add(char **env, char **av);
 char				**ft_array_rem(t_sh *p, char *name);
 char				**ft_array_sub(char **array, int start, int len, char *c);
+void				ft_cd(t_sh *sh, char **av);
+void				ft_change_pwd(t_sh *p, char *dir);
 void				ft_cmd(t_sh *p);
 char				ft_cmp_env(char *env, char *cmd);
-void				ft_error(int error, char *str);
+void				ft_error(int error, char *name);
 void				ft_execute(char *path, char **av, char **env);
 void				ft_exec_cmd(t_sh *p);
 void				ft_exit(char *str);

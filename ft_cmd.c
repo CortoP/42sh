@@ -6,7 +6,7 @@
 /*   By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 16:08:49 by vlehuger          #+#    #+#             */
-/*   Updated: 2014/01/26 12:55:36 by vlehuger         ###   ########.fr       */
+/*   Updated: 2014/02/06 14:34:33 by vlehuger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void				ft_cmd(t_sh *p)
 {
 	ft_get_cmd(p);
-	ft_exec_cmd(p);
+	if (p->cmd)
+		ft_exec_cmd(p);
 }
