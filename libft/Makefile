@@ -1,77 +1,128 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+         #
+#    By: dcojan <dcojan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2013/12/06 17:01:45 by vlehuger          #+#    #+#              #
-#    Updated: 2014/01/25 11:43:35 by vlehuger         ###   ########.fr        #
+#    Created: 2014/03/27 14:05:35 by dcojan            #+#    #+#              #
+#    Updated: 2014/03/27 14:05:35 by dcojan           ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
-
-CC = gcc
-LD = ar
-CFLAGS = -Wall -Werror -Wextra
-LDFLAGS = rcs
+# **************************************************************************** #
 
 NAME = libft.a
 
-SRCS = \
-		ft_atoi.c\
-		ft_isalnum.c \
-		ft_isalpha.c \
-		ft_isascii.c \
-		ft_isdigit.c \
-		ft_isprint.c \
-		ft_itoa.c \
-		ft_itoa_ccount.c \
-		ft_lstadd.c \
-		ft_lstnew.c \
-		ft_memcpy.c \
-		ft_memdel.c \
-		ft_putchar.c \
-		ft_putchar_fd.c \
-		ft_putendl.c \
-		ft_putendl_fd.c \
-		ft_putnbr.c \
-		ft_putnbr_fd.c \
-		ft_putstr.c \
-		ft_putstr_fd.c \
-		ft_strcmp.c \
-		ft_strdel.c \
-		ft_strdup.c \
-		ft_strjoin.c \
-		ft_strlen.c \
-		ft_strncmp.c \
-		ft_strnew.c \
-		ft_strsplit.c \
-		ft_str2split.c \
-		ft_strsub.c \
-		ft_strtrim.c \
-		ft_tolower.c \
-		ft_toupper.c \
-		get_coord.c \
-		get_grid.c \
-		get_next_line.c \
+DIRSRC = ./srcs/
+DIROBJ = ./obj/
 
-OBJS = $(SRCS:.c=.o)
+SRC = ft_memset.c\
+	  ft_bzero.c\
+	  ft_memcpy.c\
+	  ft_memccpy.c\
+	  ft_memmove.c\
+	  ft_memchr.c\
+	  ft_memcmp.c\
+	  ft_strlen.c\
+	  ft_strdup.c\
+	  ft_strcpy.c\
+	  ft_strncpy.c\
+	  ft_strcat.c\
+	  ft_strncat.c\
+	  ft_strlcat.c\
+	  ft_strchr.c\
+	  ft_strrchr.c\
+	  ft_strrfound.c\
+	  ft_strstr.c\
+	  ft_strfstr.c\
+	  ft_strnstr.c\
+	  ft_strcmp.c\
+	  ft_strncmp.c\
+	  ft_atoi.c\
+	  ft_isalpha.c\
+	  ft_isdigit.c\
+	  ft_isalnum.c\
+	  ft_isascii.c\
+	  ft_isprint.c\
+	  ft_toupper.c\
+	  ft_tolower.c\
+	  ft_memalloc.c\
+	  ft_memdel.c\
+	  ft_strnew.c\
+	  ft_strdel.c\
+	  ft_strclr.c\
+	  ft_striter.c\
+	  ft_striteri.c\
+	  ft_strequ.c\
+	  ft_strnequ.c\
+	  ft_strmap.c\
+	  ft_strmapi.c\
+	  ft_strjoin.c\
+	  ft_strtrim.c\
+	  ft_strsub.c\
+	  ft_strsplit.c\
+	  ft_strfound.c\
+	  ft_itoa.c\
+	  ft_putchar.c\
+	  ft_putstr.c\
+	  ft_putendl.c\
+	  ft_putnbr.c\
+	  ft_putchar_fd.c\
+	  ft_putstr_fd.c\
+	  ft_putendl_fd.c\
+	  ft_putnbr_fd.c\
+	  ft_lstnew.c\
+	  ft_lstdelone.c\
+	  ft_lstdel.c\
+	  ft_lstadd.c\
+	  ft_lstiter.c\
+	  ft_putnbrendl.c\
+	  ft_lstaddend.c\
+	  ft_memjoin.c\
+	  free_string.c\
+	  get_next_line.c\
+	  ft_ctablen.c\
+	  ft_getnbr.c\
+	  ft_absolute.c\
+	  ft_ctabdup.c\
+	  ft_ctabdel.c\
+	  ft_ctabcpy.c\
+	  ft_ctabsub.c\
+	  ft_ctabjoin.c\
+	  ft_ctabaddtoindex.c\
+	  ft_getopt.c
 
-all : $(NAME)
+OBJ = $(SRC:.c=.o)
 
-$(NAME): $(OBJS)
-	$(LD) $(LDFLAGS) $(NAME) $^
-	ranlib $(NAME)
+DIROBJS = $(addprefix $(DIROBJ), $(OBJ))
 
-%.o: %.c
-	$(CC) -I includes/ -o $@ -c $< $(CFLAGS)
+CC = clang
+CFLAGS = -Wall -Werror -Wextra -O3 -g
+
+AR = ar
+ARFLAGS = -rc
+
+HEAD = -I ./includes/
+
+all: $(NAME)
+
+$(NAME): $(DIROBJS)
+	@printf 'Compiling %s binaries : [\033[32mDONE\033[0m]\n' '$(NAME)'
+	@$(AR) $(ARFLAGS) $(NAME) $^
+	@ranlib $(NAME)
+	@printf 'Compiling %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
+
+$(DIROBJ)%.o: $(DIRSRC)%.c
+	@mkdir -p obj
+	@$(CC) $(CFLAGS) -c $^ $(HEAD) -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -rf obj
+	@printf 'Clean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -rf $(NAME)
+	@printf 'Fclean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
 
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re

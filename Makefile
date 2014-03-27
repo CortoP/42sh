@@ -1,68 +1,112 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlehuger <vlehuger@student.42.fr>          +#+  +:+       +#+         #
+#    By: grebett <grebett@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2013/12/06 17:01:45 by vlehuger          #+#    #+#              #
-#    Updated: 2014/02/06 11:50:26 by vlehuger         ###   ########.fr        #
+#    Created: 2014/03/27 14:04:43 by grebett           #+#    #+#              #
+#    Updated: 2014/03/27 14:04:43 by grebett          ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-NAME = ft_minishell2
+NAME = 42sh
 
-SRCS = \
-		main.c \
-		array_management.c \
-		ft_builtin/cd/ft_cd.c \
-		ft_builtin/cd/ft_change_pwd.c \
-		ft_builtin/ft_exit.c \
-		ft_builtin/ft_setenv.c \
-		ft_builtin/ft_unsetenv.c \
-		ft_cmd.c \
-		ft_cmp_env.c \
-		ft_error.c \
-		ft_exec.c \
-		ft_exec_cmd.c \
-		ft_get_args.c \
-		ft_get_cmd.c \
-		ft_get_env.c \
-		ft_get_env_path.c \
-		ft_get_params.c \
-		ft_init_cmd.c \
-		ft_separe.c \
-		ft_shell.c \
-		ft_split_trim.c \
-		ft_test_exec_redir.c \
-		ft_test_ft_functions.c \
-		ft_test_path.c \
-		ft_test_pipe.c \
-		ft_test_pipe_cmd.c \
-		ft_test_redir.c \
-		ft_valid_redir.c
+DIRSRC = ./srcs/
+DIROBJ = ./obj/
 
-OBJS = $(SRCS:.c=.o)
+SRC = main.c\
+	  environ.c\
+	  signal.c\
+	  setters.c\
+	  error.c\
+	  signal.c\
+	  print_miniprompt.c\
+	  tputs_putchar.c\
+	  get_sh.c\
+	  prompt.c\
+	  start_sh.c\
+	  ft_envs_annexe_sh.c\
+	  splittoken.c\
+	  tokentotree.c\
+	  new_node.c\
+	  exectree.c\
+	  check_tree.c\
+	  check_glob.c\
+	  tree.c\
+	  tree2.c\
+	  check_cmd.c\
+	  ft_sleep.c\
+	  terminal.c
 
-all : $(NAME)
+SRC +=	ft_dlst_cmd_addtopos.c\
+		ft_dlst_cmd_del.c\
+		ft_dlst_cmd_delone.c\
+		ft_dlst_cmd_delpos.c\
+		ft_dlst_cmd_new.c\
+		ft_dlst_cmd_tostr.c\
+		ft_cmd_dup.c
 
-$(NAME): $(OBJS)
-	make -C libft/
-	$(CC) -o $(NAME) $(OBJS) libft/libft.a
+SRC +=	ft_dlst_histo_addtopos.c\
+		ft_dlst_histo_delpos.c\
+		ft_dlst_histo_new.c
 
-%.o: %.c
-	$(CC) -I includes/ -I libft/includes/ -o $@ -c $< $(CFLAGS)
+SRC +=  ft_minishell3.c\
+		user_entry_init.c\
+		user_entry_init2.c\
+		cursor_move.c\
+		cursor_move2.c\
+		sh3_user_entry.c\
+		sh3_user_entry_display.c\
+		sh3_user_entry_process_key.c\
+		sh3_user_entry_process_key2.c\
+		sh3_user_entry_edition.c\
+		sh3_user_entry_history.c\
+		sh3_user_entry_get_key.c\
+		sh3_user_entry_state_flag.c\
+		sh3_termios.c\
+		sh3_prompt.c\
+		sh3_error.c\
+		sh_tputchar.c\
+		sh3_quit.c
+
+OBJ = $(SRC:.c=.o)
+
+DIROBJS = $(addprefix $(DIROBJ), $(OBJ))
+
+LFT = -L ./libft/ -lft
+LTERM = -L /usr/lib -ltermcap
+
+CC = clang
+CFLAGS = -Wall -Werror -Wextra -g
+
+HEAD = -I ./includes -I ./libft/includes/
+
+all: $(NAME)
+
+$(NAME): $(DIROBJS)
+	@printf 'Compiling ./%s binaries : [\033[32mDONE\033[0m]\n' '$(NAME)'
+	@$(MAKE) -C ./libft/
+	@$(MAKE) -C ./builtins/
+	@$(CC) $(CFLAGS) -o $@ $^ $(HEAD) $(LFT) $(LTERM)
+	@printf 'Compiling ./%s : [\033[32mDONE\033[0m]\n' '$(NAME)'
+
+$(DIROBJ)%.o: $(DIRSRC)%.c
+	@mkdir -p obj
+	@$(CC) $(CFLAGS) -c $^ $(HEAD) -o $@
 
 clean:
-	make clean -C libft/
-	rm -f $(OBJS)
+	@rm -rf $(DIROBJ)
+	@printf 'Clean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
+	@$(MAKE) clean -C ./libft
+	@$(MAKE) clean -C ./builtins
 
 fclean: clean
-	make fclean -C libft/
-	rm -f $(NAME)
+	@$(RM) $(RFLAGS) $(NAME)
+	@printf 'Fclean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
+	@$(MAKE) fclean -C ./libft
+	@$(MAKE) fclean -C ./builtins
 
-re: fclean all
+re : fclean all
 
-.PHONY: clean
+.PHONY: all clean fclean re
